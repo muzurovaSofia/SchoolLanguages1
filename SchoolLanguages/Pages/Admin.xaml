@@ -1,0 +1,125 @@
+﻿<Page x:Class="SchoolLanguages.Pages.Admin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SchoolLanguages.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="780" d:DesignWidth="1000"
+      Title="Admin">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Name="SFS" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Сортировка по возрастанию" Name="SortUp" Click="SortUp_Click"></Button>
+                        <Button Content="Сортировка по убыванию" Name="SortDown" Click="SortDown_Click"></Button>
+                    </StackPanel>
+                    <TextBlock Width="184">Сортировка по скидке:</TextBlock>
+                    <ComboBox Margin="0,5"  Name="Filter" SelectionChanged="Filter_SelectionChanged">
+                        <ComboBoxItem>0-5%</ComboBoxItem>
+                        <ComboBoxItem>5-15%</ComboBoxItem>
+                        <ComboBoxItem>15-30%</ComboBoxItem>
+                        <ComboBoxItem>30-70%</ComboBoxItem>
+                        <ComboBoxItem>70-100%</ComboBoxItem>
+                        <ComboBoxItem>Все</ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Width="164">Поиск по названию</TextBlock>
+                    <TextBox Name="Poisk" TextChanged="Poisk_TextChanged"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <DataGrid Margin="0,30,0,0" Name="DGServises" AutoGenerateColumns="False" HorizontalAlignment="Center" IsReadOnly="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal"  Initialized="StackPanel_Initialized">
+                                            <MediaElement Width="85" Height="80" Initialized="MediaElement_Initialized"/>
+                                            <StackPanel Name="Content" Orientation="Vertical">
+                                                <StackPanel>
+                                                    <TextBlock Initialized="TextBlock_Initialized"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Initialized="TextBlock_Initialized_1"/>
+                                                        <TextBlock Initialized="TextBlock_Initialized_2"/>
+                                                        <TextBlock Text="рублей" />
+                                                        <TextBlock Initialized="TextBlock_Initialized_4"/>
+                                                    </StackPanel>
+                                                    <TextBlock Initialized="TextBlock_Initialized_3"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Template="{StaticResource btnTample}" Content="Редактировать" Initialized="Button_Initialized" Name="BtnRedact" Click="Button_Click"/>
+                                                    <Button Template="{StaticResource btnTample}" Content="Удалить" Initialized="Button_Initialized_1" Click="Button_Click_1"/>
+                                                    <Button Template="{StaticResource btnTample}" Content="Новый заказ" Initialized="Button_Initialized_2" Click="Button_Click_2"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Visibility="Hidden" Name="ColZap" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Height="26">Всего записей:</TextBlock>
+                        <TextBox Width="130" Name="All"></TextBox>
+                        <TextBlock Height="26">Отфильтровано записей:</TextBlock>
+                        <TextBox Width="130" Name="Vivod"></TextBox>
+                    </StackPanel>
+                    <Button Template="{StaticResource btnTample}" VerticalAlignment="Top" Height="50" Name="BtnYsl" Content="Новая услуга " Click="BtnYsl_Click"></Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Margin="0,80,0,0" Name="Redact" Visibility="Collapsed" HorizontalAlignment="Center">
+            <Button Template="{StaticResource btnTample}" Name="Home" Click="Home_Click" Content="назад"></Button>
+            <TextBlock>ID</TextBlock>
+            <TextBlock Name="RedID"></TextBlock>
+            <TextBlock>Название</TextBlock>
+            <TextBox Name="RedNaz"></TextBox>
+            <TextBlock>Цена</TextBlock>
+            <TextBox Name="RedPrice"></TextBox>
+            <TextBlock>Время</TextBlock>
+            <TextBox Name="RedTime"></TextBox>
+            <TextBlock>Описание</TextBlock>
+            <TextBox Name="RedOpis"></TextBox>
+            <TextBlock>Скидка</TextBlock>
+            <TextBox Name="RedSale"></TextBox>
+            <TextBlock>Путь</TextBlock>
+            <TextBox Name="RedPath"></TextBox>
+            <Button Template="{StaticResource btnTample}" Name="SaveRed" Click="SaveRed_Click" Content="Сохранить"></Button>
+        </StackPanel>
+        <StackPanel  Margin="0,80,0,0" Name="NewYsl" Visibility="Collapsed" HorizontalAlignment="Center">
+            <Button Template="{StaticResource btnTample}" Name="Home2" Content="Назад" Click="Home2_Click"></Button>
+            <TextBlock Name="ID"></TextBlock>
+            <TextBlock>Введите название</TextBlock>
+            <TextBox Name="Naz"></TextBox>
+            <TextBlock>Введите стоимость</TextBlock>
+            <TextBox Name="Price"></TextBox>
+            <TextBlock>Введите время в минутах</TextBlock>
+            <TextBox Name="Time"></TextBox>
+            <TextBlock>Введите описание</TextBlock>
+            <TextBox Name="Opis"></TextBox>
+            <TextBlock>Введите скидку</TextBlock>
+            <TextBox Name="Sale"></TextBox>
+            <TextBlock>Введите путь картинки</TextBlock>
+            <TextBox Name="IPath"></TextBox>
+            <Button Template="{StaticResource btnTample}" Name="IBtn" Click="IBtn_Click" Content="Найти изображение"></Button>
+            <Button Template="{StaticResource btnTample}" Name="SaveNew" Content="Сохранить" Click="SaveNew_Click"></Button>
+        </StackPanel>
+        <StackPanel Margin="0,80,0,0" HorizontalAlignment="Center" Name="NewZap" Visibility="Collapsed">
+            <Button Template="{StaticResource btnTample}" Name="Home3" Content="Назад" Click="Home3_Click"></Button>
+            <TextBlock>Название</TextBlock>
+            <TextBox Name="NazZap"></TextBox>
+            <TextBlock>Время</TextBlock>
+            <TextBox Name="TZap"></TextBox>
+            <TextBlock>Введите время в минутах</TextBlock>
+            <TextBox Name="TimZap"></TextBox>
+            <TextBlock>Выберите клиента</TextBlock>
+            <ComboBox   Name="CBClients"></ComboBox>
+            <TextBlock>Ведите дату</TextBlock>
+            <DatePicker  Name="DateZ"></DatePicker>
+            <TextBlock>Ведите начало</TextBlock>
+            <TextBox Name="StartTime" TextChanged="StartTime_TextChanged"></TextBox>
+            <Button Template="{StaticResource btnTample}" Name="WriteZap" Click="WriteZap_Click" Content="Записать"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
